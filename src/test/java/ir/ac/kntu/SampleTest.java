@@ -16,26 +16,26 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class HW5Tests {
-    private static final String STUDENT_IDS_FILE_PATH = "students.txt";
+public class SampleTest {
+    private static final String INTEGERS_FILE_PATH = "integers.txt";
     private static final String STRING_DATASET_PATH = "string_dataset.txt";
     private static final int TABLE_SIZE = 1000;
 
-    private final List<Integer> studentIDs;
+    private final List<Integer> integers;
     private final List<String> strings;
 
-    public HW5Tests() {
-        this.studentIDs = readListFromFile(STUDENT_IDS_FILE_PATH).stream().map(Integer::parseInt).toList();
+    public SampleTest() {
+        this.integers = readListFromFile(INTEGERS_FILE_PATH).stream().map(Integer::parseInt).toList();
         this.strings = readListFromFile(STRING_DATASET_PATH);
     }
 
     @Test
-    public void testAddStudentIDs() {
+    public void testAddIntegers() {
         CollisionHandler handler = new ChainingHandler();
-        long divisionCollCount = runHashingTest(new DivisionMethod(TABLE_SIZE), handler, studentIDs, TestParms.COLLISION_COUNT);
-        long multCollCount = runHashingTest(new MultiplactionMethod(TABLE_SIZE), handler, studentIDs, TestParms.COLLISION_COUNT);
-        long universCollCount = runHashingTest(new UniversalHash(TABLE_SIZE), handler, studentIDs, TestParms.COLLISION_COUNT);
-        System.out.println("Student IDs Table data:");
+        long divisionCollCount = runHashingTest(new DivisionMethod(TABLE_SIZE), handler, integers, TestParms.COLLISION_COUNT);
+        long multCollCount = runHashingTest(new MultiplactionMethod(TABLE_SIZE), handler, integers, TestParms.COLLISION_COUNT);
+        long universCollCount = runHashingTest(new UniversalHash(TABLE_SIZE), handler, integers, TestParms.COLLISION_COUNT);
+        System.out.println("Integers Table data:");
         System.out.println("Division Method collisions: " + divisionCollCount);
         System.out.println("Multiplication Method collisions: " + multCollCount);
         System.out.println("Universal Method collisions: " + universCollCount);
